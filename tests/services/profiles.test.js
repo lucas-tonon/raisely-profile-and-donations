@@ -9,7 +9,7 @@ describe('Profiles Service', () => {
     });
 
     describe('"fetchProfiles"', () => {
-        it('should retrieve all profiles', () => {
+        test('should retrieve all profiles', () => {
             // Given
             const profiles = [
                 {

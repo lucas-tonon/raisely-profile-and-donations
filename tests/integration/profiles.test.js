@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../../src/index');
 
 describe('Profiles API', () => {
-    it('GET "/profiles" should fetch all profiles', async () => {
+    test('GET "/profiles" should fetch all profiles', async () => {
         // When
         const response = await request(app).get('/profiles');
 

@@ -15,8 +15,8 @@ describe('Profiles Controller', () => {
         next = jest.fn();
     });
 
-    describe('"/profiles" endpoint', () => {
-        it('should fetch all profiles', async () => {
+    describe('GET "/profiles" endpoint', () => {
+        test('should respond with 200 and fetch all profiles', async () => {
             // Given
             const profiles = [
                 {
@@ -41,5 +41,23 @@ describe('Profiles Controller', () => {
             // Then
             expect(res.json).toHaveBeenCalledWith(profiles);
         });
+    });
+
+    describe('GET "/profiles/:profile/donations" endpoint', async () => {
+        // TODO: should respond with 200 and retrieve all donations when all is correct
+
+        // TODO: should respond with 200 and return empty array if no donations exist
+
+        // TODO: should respond with 400 in case of invalid profileId
+
+        // TODO: should respond with 404 if profile does not exist
+    });
+
+    describe('POST "/profiles/:profile/donations" endpoint', async () => {
+        // TODO: should respond with 201 and create a donation when all is correct
+
+        // TODO: should respond with 404 if profile does not exist
+
+        // TODO: should respond with 400 in case of invalid donation fields (one test per field)
     });
 });
