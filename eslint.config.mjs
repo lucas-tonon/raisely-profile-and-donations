@@ -9,10 +9,18 @@ export default [
       sourceType: "commonjs"
     },
     rules: {
+      semi: ["error", "always"],
       "no-unused-vars": [2, { "args": "after-used", "argsIgnorePattern": "^_" }],
-      semi: ["error", "always"]
+      quotes: [2, "single", { "avoidEscape": true }]
     }
   },
-  { languageOptions: { globals: globals.node } },
+  {
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.jest
+      }
+    },
+  },
   pluginJs.configs.recommended,
 ];
