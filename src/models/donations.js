@@ -13,8 +13,22 @@ let donations = [
     id: 'f7939023-3016-4a29-bffd-913f41b98598',
     donorName: 'Jane Smith',
     amount: 5000,
-    profileId: '2ad19172-9683-407d-9732-8397d58ddcb2',
+    profileId: '2ad19172-9683-407d-9732-8397d58ddcb2', // Nick's Fundraising Profile
     currency: 'AUD'
+  },
+  {
+    id: '3e02ade4-c8f7-4c70-8f14-acfdd650dbf3',
+    donorName: 'Sally Smith',
+    amount: 9500,
+    profileId: 'cf7e4790-2feb-4551-8dd9-f817117238a9', // Helper for Nick's Fundraising Profile
+    currency: 'EUR'
+  },
+  {
+    id: '19d7f3fa-eaf2-4171-aa35-34b73ac87148',
+    donorName: 'John Doe',
+    amount: 2700,
+    profileId: '384f7229-a8b0-4d63-bab3-101d66047e24', // Campaign - More tests
+    currency: 'EUR'
   }
 ];
 
@@ -33,7 +47,7 @@ const getDonationsByProfileIds = (profileIds) => {
     const donationProfileId = donation.profileId;
 
     if (queryProfileIdsMap[donationProfileId]) {
-      filteredDonations.push(donation);
+      filteredDonations.push({ ...donation });
     }
   }
 
