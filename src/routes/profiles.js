@@ -3,6 +3,7 @@ const router = express.Router();
 const profilesController = require('../controllers/profiles');
 const { validatePathParams, validateBody } = require('../middlewares/validator');
 const Joi = require('joi');
+const asyncHandler = require('../middlewares/asyncHandler');
 
 router.get('/', profilesController.fetchAllProfiles);
 
@@ -15,7 +16,7 @@ router.get(
             }
         )
     ),
-    profilesController.fetchDonationsByProfileId
+    asyncHandler(profilesController.fetchDonationsByProfileId)
 );
 
 router.post(
@@ -36,7 +37,7 @@ router.post(
             }
         )
     ),
-    profilesController.createDonationForProfileId
+    asyncHandler(profilesController.createDonationForProfileId)
 );
 
 module.exports = router;
