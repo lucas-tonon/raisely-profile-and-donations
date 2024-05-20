@@ -23,7 +23,8 @@ const getProfileIdsFromSubtree = (rootProfileId) => {
         let current = queue.shift();
         profileIds.push(current);
 
-        for (let child of profilesAdjacencyListCache[current]) {
+        const children = profilesAdjacencyListCache[current] || [];
+        for (let child of children) {
             if (visited[child] === undefined) {
                 queue.push(child);
                 visited[child] = true;

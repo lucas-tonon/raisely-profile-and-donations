@@ -2,6 +2,7 @@ const { getProfiles, getProfileById } = require('../models/profiles');
 const { getDonationsByProfileIds } = require('../models/donations');
 const { convertAmountToTargetCurrency } = require('../utils/convertRates');
 const { profilesAdjacencyListCache, buildProfilesAdjacencyListCache, getProfileIdsFromSubtree } = require('../utils/profilesTreeCache');
+const { NotFoundError } = require('../utils/errors');
 
 const fetchProfiles = () => {
     return getProfiles();
@@ -9,6 +10,10 @@ const fetchProfiles = () => {
 
 const fetchDonationsByProfileId = (profileId) => {
     const profile = getProfileById(profileId);
+
+    if (!profile) {
+        throw new NotFoundError('Profile not found');
+    }
 
     if (!Object.keys(profilesAdjacencyListCache).length) {
         buildProfilesAdjacencyListCache(getProfiles());
