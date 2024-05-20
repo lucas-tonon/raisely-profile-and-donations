@@ -25,8 +25,12 @@ const getProfiles = () => {
   return profiles;
 };
 
+const getProfileById = (profileId) => {
+  return profiles.filter(p => p.id === profileId)[0];
+};
+
 const createProfile = (profile) => {
   profiles.push(profile);
 };
 
-module.exports = { getProfiles, createProfile };
+module.exports = { getProfiles, getProfileById, createProfile };

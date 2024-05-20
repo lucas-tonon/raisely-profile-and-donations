@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require('uuid');
+
 /**
  * Donations have the following shape:
  * id - A unique identifier, UUID v4
@@ -39,7 +41,10 @@ const getDonationsByProfileIds = (profileIds) => {
 };
 
 const createDonation = (donation) => {
-  donations.push(donation);
+  const newDonation = { ...donation, id: uuidv4() };
+  donations.push(newDonation);
+
+  return newDonation;
 };
 
 module.exports = { getDonations, getDonationsByProfileIds, createDonation };

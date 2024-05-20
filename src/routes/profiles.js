@@ -18,5 +18,25 @@ router.get(
     profilesController.fetchDonationsByProfileId
 );
 
+router.post(
+    '/:profile/donations',
+    validatePathParams(
+        Joi.object(
+            {
+                profile: Joi.string().guid({ version: 'uuidv4' }).required()
+            }
+        )
+    ),
+    validateBody(
+        Joi.object(
+            {
+                donorName: Joi.string().required(),
+                amount: Joi.number().integer().required(),
+                currency: Joi.string().valid('USD', 'AUD', 'EUR').required(),
+            }
+        )
+    ),
+    profilesController.createDonationForProfileId
+);
 
 module.exports = router;

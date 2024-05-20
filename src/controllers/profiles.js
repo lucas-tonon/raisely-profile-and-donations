@@ -1,3 +1,4 @@
+const donationsService = require('../services/donations');
 const profilesService = require('../services/profiles');
 
 /**
@@ -18,12 +19,16 @@ const fetchDonationsByProfileId = (req, res) => {
 /**
  * Submit a new donation to the profile with the given ID
  */
-const createDonationForProfile = (_req, _res) => {
-    // Your implementation here
+const createDonationForProfileId = (req, res) => {
+    const profileId = req.params.profile;
+    const { donorName, amount, currency } = req.body;
+
+    const newDonation = donationsService.createDonationForProfileId({ donorName, amount, currency }, profileId);
+    res.status(201).json(newDonation);
 };
 
 module.exports = {
-    createDonationForProfile,
+    createDonationForProfileId,
     fetchAllProfiles,
     fetchDonationsByProfileId
 };
