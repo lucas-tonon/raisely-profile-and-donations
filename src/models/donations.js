@@ -20,8 +20,26 @@ const getDonations = () => {
   return donations;
 };
 
+const getDonationsByProfileIds = (profileIds) => {
+  // Creating a map to allow O(n) filtering by keys
+  const queryProfileIdsMap = profileIds.reduce((a, v) => ({ ...a, [v]: true }), {});
+
+  const donations = getDonations();
+  const filteredDonations = [];
+
+  for (let donation of donations) {
+    const donationProfileId = donation.profileId;
+
+    if (queryProfileIdsMap[donationProfileId]) {
+      filteredDonations.push(donation);
+    }
+  }
+
+  return filteredDonations;
+};
+
 const createDonation = (donation) => {
   donations.push(donation);
 };
 
-module.exports = { getDonations, createDonation };
+module.exports = { getDonations, getDonationsByProfileIds, createDonation };

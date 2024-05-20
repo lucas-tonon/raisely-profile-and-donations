@@ -3,15 +3,16 @@ const profilesService = require('../services/profiles');
 /**
  * Fetch all profiles
  */
-const fetchAllProfiles = (req, res) => {
+const fetchAllProfiles = (_req, res) => {
     res.json(profilesService.fetchProfiles());
 };
 
 /**
- * Fetch a single profiles donations
+ * Fetch a single profile's donations
  */
-const fetchDonationsByProfile = (_req, _res) => {
-    // Your implementation here
+const fetchDonationsByProfileId = (req, res) => {
+    const profileId = req.params.profile;
+    res.json(profilesService.fetchDonationsByProfileId(profileId));
 };
 
 /**
@@ -24,5 +25,5 @@ const createDonationForProfile = (_req, _res) => {
 module.exports = {
     createDonationForProfile,
     fetchAllProfiles,
-    fetchDonationsByProfile
+    fetchDonationsByProfileId
 };
