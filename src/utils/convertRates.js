@@ -11,6 +11,10 @@ const conversionRates = {
 const acceptedConversionRates = Object.keys(conversionRates);
 
 const convertAmountToTargetCurrency = (amount, originalCurrency, targetCurrency) => {
+    if (originalCurrency === targetCurrency) {
+        return amount;
+    }
+
     if (!conversionRates[originalCurrency] || !conversionRates[targetCurrency]) {
         throw new Error('Invalid currencies for conversion');
     }
