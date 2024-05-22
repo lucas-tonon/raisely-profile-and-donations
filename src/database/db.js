@@ -15,13 +15,6 @@ const donations = [
         currency: 'AUD'
     },
     {
-        id: '3e02ade4-c8f7-4c70-8f14-acfdd650dbf3',
-        donorName: 'Sally Smith',
-        amount: 9500,
-        profileId: 'cf7e4790-2feb-4551-8dd9-f817117238a9', // Helper for Nick's Fundraising Profile
-        currency: 'EUR'
-    },
-    {
         id: '19d7f3fa-eaf2-4171-aa35-34b73ac87148',
         donorName: 'John Doe',
         amount: 2700,
@@ -42,30 +35,35 @@ const profiles = [
     {
         id: '78afca18-8162-4ed5-9a7b-212b98c9ec87',
         name: 'Campaign Profile',
+        total: 10958,
         parentId: null,
         currency: 'AUD'
     },
     {
         id: '2ad19172-9683-407d-9732-8397d58ddcb2',
         name: 'Nick\'s Fundraising Profile',
+        total: 5000,
         parentId: '78afca18-8162-4ed5-9a7b-212b98c9ec87',
         currency: 'AUD'
     },
     {
         id: '064dc448-3061-485a-b2ad-125da2e82612',
         name: 'Nick\'s Friend',
+        total: 0,
         parentId: '2ad19172-9683-407d-9732-8397d58ddcb2',
         currency: 'USD'
     },
     {
         id: 'cf7e4790-2feb-4551-8dd9-f817117238a9',
         name: 'Helper for Nick\'s Fundraising Profile',
+        total: 0,
         parentId: '2ad19172-9683-407d-9732-8397d58ddcb2',
         currency: 'EUR'
     },
     {
         id: '384f7229-a8b0-4d63-bab3-101d66047e24',
         name: 'Campaign - More tests',
+        total: 3186,
         parentId: null,
         currency: 'USD'
     },
@@ -73,6 +71,7 @@ const profiles = [
 
 
 module.exports = {
-    donations,
-    profiles
+    // Deep Copy of the arrays
+    donations: JSON.parse(JSON.stringify(donations)),
+    profiles: JSON.parse(JSON.stringify(profiles))
 };

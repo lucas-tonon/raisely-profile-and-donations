@@ -1,9 +1,11 @@
 const express = require('express');
+const Joi = require('joi');
+
 const router = express.Router();
 const profilesController = require('../controllers/profiles');
 const { validatePathParams, validateBody } = require('../middlewares/validator');
-const Joi = require('joi');
 const asyncHandler = require('../middlewares/asyncHandler');
+const { acceptedConversionRates } = require('../utils/convertRates');
 
 router.get('/', profilesController.fetchAllProfiles);
 
@@ -33,7 +35,7 @@ router.post(
             {
                 donorName: Joi.string().required(),
                 amount: Joi.number().integer().required(),
-                currency: Joi.string().valid('USD', 'AUD', 'EUR').required(),
+                currency: Joi.string().valid(...acceptedConversionRates).required(),
             }
         )
     ),

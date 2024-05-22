@@ -1,7 +1,5 @@
 const { getProfiles, getProfileById } = require('../models/profiles');
-const { getDonationsByProfileIds } = require('../models/donations');
-const { convertAmountToTargetCurrency } = require('../utils/convertRates');
-const { profilesAdjacencyListCache, buildProfilesAdjacencyListCache, getProfileIdsFromSubtree } = require('../utils/profilesTreeCache');
+const { getDonationsByProfileId } = require('../models/donations');
 const { NotFoundError } = require('../utils/errors');
 
 const fetchProfiles = () => {
@@ -15,22 +13,7 @@ const fetchDonationsByProfileId = (profileId) => {
         throw new NotFoundError('Profile not found');
     }
 
-    if (!Object.keys(profilesAdjacencyListCache).length) {
-        buildProfilesAdjacencyListCache(getProfiles());
-    }
-
-    const profileIds = getProfileIdsFromSubtree(profileId);
-    const donations = getDonationsByProfileIds(profileIds);
-
-    // Convert donation amount to profile's currency type
-    for (let donation of donations) {
-        if (donation.currency === profile.currency) continue;
-
-        donation.amount = convertAmountToTargetCurrency(donation.amount, donation.currency, profile.currency);
-        donation.currency = profile.currency;
-    }
-
-    return donations;
+    return getDonationsByProfileId(profileId);
 };
 
 module.exports = {

@@ -8,6 +8,8 @@ const conversionRates = {
     EUR: 1.18
 };
 
+const acceptedConversionRates = Object.keys(conversionRates);
+
 const convertAmountToTargetCurrency = (amount, originalCurrency, targetCurrency) => {
     if (!conversionRates[originalCurrency] || !conversionRates[targetCurrency]) {
         throw new Error('Invalid currencies for conversion');
@@ -21,5 +23,6 @@ const convertAmountToTargetCurrency = (amount, originalCurrency, targetCurrency)
 };
 
 module.exports = {
+    acceptedConversionRates,
     convertAmountToTargetCurrency
 };

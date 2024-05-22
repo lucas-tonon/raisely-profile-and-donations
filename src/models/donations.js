@@ -7,23 +7,9 @@ const getDonations = () => {
   return donations;
 };
 
-// SELECT * from donations where profileId IN (<profileIds>);
-const getDonationsByProfileIds = (profileIds) => {
-  // Creating a map to allow O(n) filtering by keys (instead of array1.filter(elem => array2.includes(elem)))
-  const queryProfileIdsMap = profileIds.reduce((a, v) => ({ ...a, [v]: true }), {});
-
-  const donations = getDonations();
-  const filteredDonations = [];
-
-  for (let donation of donations) {
-    const donationProfileId = donation.profileId;
-
-    if (queryProfileIdsMap[donationProfileId]) {
-      filteredDonations.push({ ...donation });
-    }
-  }
-
-  return filteredDonations;
+// SELECT * from donations where profileId = <profileId>;
+const getDonationsByProfileId = (profileId) => {
+  return donations.filter(d => d.profileId === profileId);
 };
 
 // INSERT INTO donations (donorName, currency, amount, profileId) VALUES (...);
@@ -36,6 +22,6 @@ const createDonation = (donation) => {
 
 module.exports = {
   getDonations,
-  getDonationsByProfileIds,
+  getDonationsByProfileId,
   createDonation
 };
