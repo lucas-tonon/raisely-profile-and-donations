@@ -12,7 +12,7 @@ router.post('/',
             {
                 profileId: Joi.string().guid({ version: 'uuidv4' }).required(),
                 donorName: Joi.string().required(),
-                amount: Joi.number().integer().required(),
+                amount: Joi.number().integer().prefs({ convert: false }).required(),
                 currency: Joi.string().valid(...acceptedConversionRates).required(),
             }
         )
