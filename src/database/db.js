@@ -35,7 +35,7 @@ const profiles = [
     {
         id: '78afca18-8162-4ed5-9a7b-212b98c9ec87',
         name: 'Campaign Profile',
-        total: 10958,
+        total: 5000,
         parentId: null,
         currency: 'AUD'
     },
@@ -66,12 +66,10 @@ const profiles = [
         total: 3186,
         parentId: null,
         currency: 'USD'
-    },
+    }
 ];
 
-
 module.exports = {
-    // Deep Copy of the arrays
-    donations: JSON.parse(JSON.stringify(donations)),
-    profiles: JSON.parse(JSON.stringify(profiles))
+    donations,
+    profiles
 };
