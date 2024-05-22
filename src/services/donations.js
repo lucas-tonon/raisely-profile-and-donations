@@ -2,7 +2,6 @@ const { getProfileById } = require('../models/profiles');
 const { createDonation } = require('../models/donations');
 const { NotFoundError, BadRequestError } = require('../utils/errors');
 
-
 const createDonationAndChargeCard = (donation) => {
     const newDonation = createDonation(donation);
     // charge card here

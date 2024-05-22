@@ -16,19 +16,14 @@ const getProfileIdsFromSubtree = (rootProfileId) => {
     const profileIds = [];
 
     let queue = [rootProfileId];
-    let visited = {};
 
     // BFS logic to get all profile ids in subtree
     while (queue.length) {
         let current = queue.shift();
         profileIds.push(current);
 
-        const children = profilesAdjacencyListCache[current] || [];
-        for (let child of children) {
-            if (visited[child] === undefined) {
-                queue.push(child);
-                visited[child] = true;
-            }
+        for (let child of profilesAdjacencyListCache[current]) {
+            queue.push(child);
         }
     }
 

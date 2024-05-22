@@ -9,6 +9,10 @@ const conversionRates = {
 };
 
 const convertAmountToTargetCurrency = (amount, originalCurrency, targetCurrency) => {
+    if (!conversionRates[originalCurrency] || !conversionRates[targetCurrency]) {
+        throw new Error('Invalid currencies for conversion');
+    }
+
     const targetRateDecimal = new Decimal(conversionRates[targetCurrency]);
     const multiplierDecimal = targetRateDecimal.dividedBy(conversionRates[originalCurrency]);
 
