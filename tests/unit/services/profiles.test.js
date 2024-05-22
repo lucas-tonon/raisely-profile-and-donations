@@ -13,7 +13,7 @@ describe('Profiles Service', () => {
         jest.resetAllMocks();
     });
 
-    describe('"fetchProfiles"', () => {
+    describe('fetchProfiles', () => {
         test('should fetch all profiles calling profilesModel.getProfiles', () => {
             // When
             profilesService.fetchProfiles();
@@ -23,7 +23,7 @@ describe('Profiles Service', () => {
         });
     });
 
-    describe('"fetchDonationsByProfileId"', () => {
+    describe('fetchDonationsByProfileId', () => {
         test('should throw NotFoundError if profile does not exist', () => {
             // Given
             const profileId = '78afca18-8162-4ed5-9a7b-212b98c9ec87';
@@ -40,7 +40,7 @@ describe('Profiles Service', () => {
             const mockedProfile = {
                 id: selectedProfileId,
                 name: 'Campaign Profile',
-                amount: 12620,
+                total: 12620,
                 parentId: null,
                 currency: 'EUR'
             };

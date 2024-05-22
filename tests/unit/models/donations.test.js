@@ -7,13 +7,12 @@ jest.mock('../../../src/database/db', () => {
     };
 });
 
-
 describe('Donations Model', () => {
     beforeEach(() => {
         donationsData.splice(0, donationsData.length);
     });
 
-    describe('"getDonationsByProfileId"', () => {
+    describe('getDonationsByProfileId', () => {
         test('should return donations corresponding to specified profileId', () => {
             // Given
             const selectedProfileId = '1ee899a4-80e2-4e9d-8db6-5386bcdad922'; // Jane Smith
@@ -22,7 +21,7 @@ describe('Donations Model', () => {
                     donorName: 'Jane Smith',
                     amount: 1000,
                     currency: 'USD',
-                    profileId: selectedProfileId
+                    profileId: selectedProfileId // Jane Smith
                 },
                 {
                     donorName: 'John Doe',
@@ -47,8 +46,8 @@ describe('Donations Model', () => {
         });
     });
 
-    describe('"createDonation"', () => {
-        test('should insert element into "donationsData" with a uuidv4 "id" field', () => {
+    describe('createDonation', () => {
+        test('should create donation with a uuidv4 "id" field', () => {
             // Given
             const donation = {
                 donorName: 'Jane Smith',
@@ -61,10 +60,7 @@ describe('Donations Model', () => {
             const createdDonation = createDonation(donation);
 
             // Then
-            expect(createdDonation).toEqual(expect.objectContaining({
-                ...donation,
-                id: expect.any(String)
-            }));
+            expect(createdDonation).toEqual({ ...donation, id: expect.any(String) });
         });
     });
 });

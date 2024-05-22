@@ -91,7 +91,7 @@ describe('Donations API', () => {
                 donorName: 'Jane Smith',
                 amount: 12000,
                 currency: 'USD',
-                profileId: 'ecec195f-6d7c-462a-8d3c-0b119a5fa496'
+                profileId: 'ecec195f-6d7c-462a-8d3c-0b119a5fa496' // Test Sub-Profile
             };
 
             const mockedProfiles = [
@@ -142,7 +142,7 @@ describe('Donations API', () => {
             const currentTotalAmount = 10000;
             const donationAmount = 40000;
             const requestBody = {
-                profileId: '4083ebb2-4923-4a78-93f4-e6f73dc753d7',
+                profileId: '4083ebb2-4923-4a78-93f4-e6f73dc753d7', // Test Campaign Profile
                 currency: 'USD',
                 donorName: 'Jane Austen',
                 amount: donationAmount
@@ -172,7 +172,7 @@ describe('Donations API', () => {
             const donationAmountInUSD = 40000;
             const donationAmountInAUD = 29600; // 40000 * 0.74
             const requestBody = {
-                profileId: '4083ebb2-4923-4a78-93f4-e6f73dc753d7',
+                profileId: '4083ebb2-4923-4a78-93f4-e6f73dc753d7', // Test Campaign Profile
                 currency: 'USD',
                 donorName: 'Jane Austen',
                 amount: donationAmountInUSD

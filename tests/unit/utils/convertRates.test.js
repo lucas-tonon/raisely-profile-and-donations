@@ -1,7 +1,7 @@
 const { convertAmountToTargetCurrency } = require('../../../src/utils/convertRates');
 
 describe('ConvertRates Utility', () => {
-    describe('"convertAmountToTargetCurrency"', () => {
+    describe('convertAmountToTargetCurrency', () => {
         test('should correctly convert from one accepted currency to another', () => {
             // Given
             const usdAmount = 1000;
@@ -27,7 +27,7 @@ describe('ConvertRates Utility', () => {
         });
 
         test('should throw error if there is attempt to convert unsupported currencies', () => {
-            expect(() => convertAmountToTargetCurrency(1000, 'USD', 'BRL')).toThrow('Invalid currencies for conversion');
+            expect(() => convertAmountToTargetCurrency(1000, 'USD', 'BRL')).toThrow('Invalid currency');
         });
     });
 });

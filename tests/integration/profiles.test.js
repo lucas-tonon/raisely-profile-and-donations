@@ -129,7 +129,7 @@ describe('Profiles API', () => {
                 {
                     id: '4083ebb2-4923-4a78-93f4-e6f73dc753d7',
                     name: 'Test Campaign Profile',
-                    amount: 10000,
+                    total: 10000,
                     parentId: null,
                     currency: 'AUD'
                 },
@@ -234,13 +234,13 @@ describe('Profiles API', () => {
         test('should respond with 201 and return a new donation when profile exists', async () => {
             // Given
             const donationAmount = 12000;
-            const profileTotalAmount = 5000;
             const requestBody = {
                 donorName: 'Jane Smith',
                 amount: donationAmount,
                 currency: 'AUD',
             };
 
+            const profileTotalAmount = 5000;
             const mockedProfiles = [
                 {
                     id: '4083ebb2-4923-4a78-93f4-e6f73dc753d7',
@@ -257,15 +257,11 @@ describe('Profiles API', () => {
 
             // Then
             expect(response.status).toBe(201);
-            expect(response.body).toEqual(expect.objectContaining({
-                id: expect.any(String),
-                profileId: '4083ebb2-4923-4a78-93f4-e6f73dc753d7',
-                ...requestBody
-            }));
+            expect(response.body).toEqual({ ...requestBody, id: expect.any(String), profileId: '4083ebb2-4923-4a78-93f4-e6f73dc753d7' });
             expect(profilesData[0].total).toEqual(profileTotalAmount + donationAmount);
         });
 
-        test('should respond with 201 and create donation with converted currency when different than profile currency', async () => {
+        test('should respond with 201 and create donation with converted currency value when different than profile currency', async () => {
             // Given
             const donationAmountInUSD = 10000;
             const donationAmountInAUD = 7400;
@@ -275,11 +271,12 @@ describe('Profiles API', () => {
                 currency: 'USD',
             };
 
+            const profileTotalAmount = 1000;
             const mockedProfiles = [
                 {
                     id: '4083ebb2-4923-4a78-93f4-e6f73dc753d7',
                     name: 'Test Campaign Profile',
-                    total: 0,
+                    total: profileTotalAmount,
                     parentId: null,
                     currency: 'AUD'
                 },
@@ -291,18 +288,12 @@ describe('Profiles API', () => {
 
             // Then
             expect(response.status).toBe(201);
-            expect(response.body).toEqual(expect.objectContaining({
-                id: expect.any(String),
-                profileId: '4083ebb2-4923-4a78-93f4-e6f73dc753d7',
-                ...requestBody
-            }));
-            expect(profilesData[0].total).toEqual(donationAmountInAUD);
+            expect(response.body).toEqual({ ...requestBody, id: expect.any(String), profileId: '4083ebb2-4923-4a78-93f4-e6f73dc753d7' });
+            expect(profilesData[0].total).toEqual(profileTotalAmount + donationAmountInAUD);
         });
 
-
-        test('should respond with 201 update total for all parents of original profile', async () => {
+        test('should respond with 201 and update total for all parents of original profile', async () => {
             // Given
-            const originalAmount = 5000;
             const donationAmount = 10000;
             const requestBody = {
                 donorName: 'Jane Smith',
@@ -310,6 +301,7 @@ describe('Profiles API', () => {
                 currency: 'AUD',
             };
 
+            const originalAmount = 5000;
             const mockedProfiles = [
                 {
                     id: '4083ebb2-4923-4a78-93f4-e6f73dc753d7',
@@ -340,11 +332,7 @@ describe('Profiles API', () => {
 
             // Then
             expect(response.status).toBe(201);
-            expect(response.body).toEqual(expect.objectContaining({
-                id: expect.any(String),
-                profileId: '7de48a5e-8481-42ca-8551-ad2645b16d9f',
-                ...requestBody
-            }));
+            expect(response.body).toEqual({ ...requestBody, id: expect.any(String), profileId: '7de48a5e-8481-42ca-8551-ad2645b16d9f' });
 
             for (let profile of profilesData) {
                 expect(profile.total).toEqual(originalAmount + donationAmount);

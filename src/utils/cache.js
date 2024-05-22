@@ -1,5 +1,12 @@
 const profileAndParentsTotalUpdateCache = {};
 
+/**
+ * Builds up a cache for the list of parents of a given profileId.
+ * The goal of this cache is to be used when updating totals for parents of a profile
+ * @param {*} profiles
+ * @param {*} profileId
+ * @returns profileAndParentsTotalUpdateCache value for the given profileId
+ */
 const buildProfileAndParentsTotalUpdateCache = (profiles, profileId) => {
     // Build map of profiles for easier access
     const profilesMapById = {};

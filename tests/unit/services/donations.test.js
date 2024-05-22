@@ -27,7 +27,7 @@ describe('Donations Service', () => {
         }
     });
 
-    describe('"createDonationForProfileId', () => {
+    describe('createDonationForProfileId', () => {
         test('should throw NotFoundError when profile does not exist', () => {
             // Given
             const profileId = '7bbde55e-baa9-42a0-8584-859843ca8189';
@@ -95,7 +95,7 @@ describe('Donations Service', () => {
         });
     });
 
-    describe('"createDonationForCampaign', () => {
+    describe('createDonationForCampaign', () => {
         test('should throw NotFoundError when profile does not exist', () => {
             // Given
             const donation = {

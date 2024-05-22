@@ -21,7 +21,7 @@ describe('Profiles Controller', () => {
         next = jest.fn();
     });
 
-    describe('"fetchAllProfiles"', () => {
+    describe('fetchAllProfiles', () => {
         test('should call profilesService.fetchProfiles', async () => {
             // When
             await profilesController.fetchAllProfiles(req, res, next);
@@ -32,7 +32,7 @@ describe('Profiles Controller', () => {
         });
     });
 
-    describe('"fetchDonationsByProfileId"', () => {
+    describe('fetchDonationsByProfileId', () => {
         test('should call profilesService.fetchDonationsByProfileId with correct profileId', async () => {
             // Given
             const profileId = '78afca18-8162-4ed5-9a7b-212b98c9ec87';
@@ -49,7 +49,7 @@ describe('Profiles Controller', () => {
         });
     });
 
-    describe('"createDonationForProfileId"', () => {
+    describe('createDonationForProfileId', () => {
         test('should call profilesService.createDonationForProfileId with body data and correct profileId', async () => {
             // Given
             const profileId = '78afca18-8162-4ed5-9a7b-212b98c9ec87';

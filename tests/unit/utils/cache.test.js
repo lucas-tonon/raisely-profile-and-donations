@@ -2,7 +2,7 @@ const { buildProfileAndParentsTotalUpdateCache } = require('../../../src/utils/c
 
 
 describe('Cache Utility', () => {
-    describe('"buildProfileAndParentsTotalUpdateCache"', () => {
+    describe('buildProfileAndParentsTotalUpdateCache', () => {
         test('should generate profileAndParentsTotalUpdateCache from profiles array and profileId', () => {
             // Given
             /*

@@ -1,3 +1,8 @@
+/**
+ * Validation for request path params
+ * @param {*} schema Joi validation schema for given endpoint
+ * @returns
+ */
 const validatePathParams = (schema) => {
     return (req, res, next) => {
         const result = schema.validate(req.params);
@@ -12,6 +17,11 @@ const validatePathParams = (schema) => {
     };
 };
 
+/**
+ * Validation for request body
+ * @param {*} schema Joi validation schema for given endpoint
+ * @returns
+ */
 const validateBody = (schema) => {
     return (req, res, next) => {
         const result = schema.validate(req.body);

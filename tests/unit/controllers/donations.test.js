@@ -19,8 +19,8 @@ describe('Donations Controller', () => {
         next = jest.fn();
     });
 
-    describe('"createCampaignDonation"', () => {
-        test('should call donationsService.createDonationForCampaign and res.status', async () => {
+    describe('createCampaignDonation', () => {
+        test('should call donationsService.createDonationForCampaign', async () => {
             // Given
             req.body = {
                 profileId: 'b6b3754b-6add-4f93-92ad-3af66f8b2896',
@@ -34,7 +34,6 @@ describe('Donations Controller', () => {
 
             // Then
             expect(res.status).toHaveBeenCalledTimes(1);
-            expect(donationsService.createDonationForCampaign).toHaveBeenCalledTimes(1);
             expect(donationsService.createDonationForCampaign).toHaveBeenCalledWith(req.body);
         });
     });

@@ -20,6 +20,12 @@ const updateTotalForProfileAndItsParents = (donation, profileId) => {
     updateTotalForProfiles(profilesForTotalUpdate);
 };
 
+/**
+ * Creates donation for profileId, and also updates total value for it and its parents
+ * @param {*} donation
+ * @param {*} profileId
+ * @returns Created donation
+ */
 const createDonationForProfileId = (donation, profileId) => {
     const profile = getProfileById(profileId);
     if (!profile) {
@@ -32,6 +38,11 @@ const createDonationForProfileId = (donation, profileId) => {
     return createDonation({ ...donation, profileId });
 };
 
+/**
+ * Creates donation for campaign profile
+ * @param {*} donation
+ * @returns Created donation
+ */
 const createDonationForCampaign = (donation) => {
     const profile = getProfileById(donation.profileId);
 

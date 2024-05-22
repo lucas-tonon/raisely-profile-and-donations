@@ -10,13 +10,20 @@ const conversionRates = {
 
 const acceptedConversionRates = Object.keys(conversionRates);
 
+/**
+ * Converts specific amount in cents from one currency to another, if both are supported
+ * @param {*} amount
+ * @param {*} originalCurrency
+ * @param {*} targetCurrency
+ * @returns Converted amount, also in cents
+ */
 const convertAmountToTargetCurrency = (amount, originalCurrency, targetCurrency) => {
     if (originalCurrency === targetCurrency) {
         return amount;
     }
 
     if (!conversionRates[originalCurrency] || !conversionRates[targetCurrency]) {
-        throw new Error('Invalid currencies for conversion');
+        throw new Error('Invalid currency');
     }
 
     const targetRateDecimal = new Decimal(conversionRates[targetCurrency]);
