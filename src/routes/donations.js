@@ -3,6 +3,7 @@ const Joi = require('joi');
 
 const router = express.Router();
 const donationsController = require('../controllers/donations');
+const asyncHandler = require('../middlewares/asyncHandler');
 const { validateBody } = require('../middlewares/validator');
 const { acceptedConversionRates } = require('../utils/convertRates');
 
@@ -17,6 +18,6 @@ router.post('/',
             }
         )
     ),
-    donationsController.createCampaignDonation);
+    asyncHandler(donationsController.createCampaignDonation));
 
 module.exports = router;
